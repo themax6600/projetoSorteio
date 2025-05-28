@@ -20,7 +20,6 @@ if ($select->execute()) {
     $userinfos = $select->fetchAll(PDO::FETCH_ASSOC);
 }
 
-
 // Verifica se esta logado
 if (!$logado) {
     header("Location: " . BASE_URL . "assets/pages/entrar.php");
