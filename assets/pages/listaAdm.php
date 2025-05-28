@@ -12,7 +12,7 @@ include_once('../templates/header.php');
         <div class="col">
             <div class="card-group mt-4 ">
                 <?php foreach($userinfos as $userinfo) {?>
-                    <?php if($userinfo['adm'] == 1) {?>
+                    <?php if($userinfo['adm'] == 0) {?>
                 <div class="container ps-2 mb-3">
                     <div class="row">
                         <div class="col border border-dark border-2">
