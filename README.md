@@ -1,5 +1,6 @@
 # projetoSorteio
 
-Aqui é o grupo q vai fazer o melhor✌️ sorteio pro sesqui
+Aqui é o grupo q vai fazer o melhor✌️ sorteio pro sesquiiiiiiiiiiiiiiiii
 vou ganhar
-nã
+
+e o henrique vai ficar em ultimo como de costume (igual mario party)
