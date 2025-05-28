@@ -60,7 +60,7 @@ if (!$logado) {
                 <a href="<?= BASE_URL ?>assets/pages/user.php" class="w-25">
                     <img src="<?= BASE_URL ?>assets/img/user.png" class="rounded-circle w-75" alt="">
                 </a>
-                <h5 class="">
+                <h5 class="w-100 h-100 text-center ">
                     <?php echo $nomeUser ?>
                 </h5>
             </div>
