@@ -1,5 +1,5 @@
 # projetoSorteio
 
-Aqui é o grupo q vai fazer o melhor✌️ sorteio pro sesc
+Aqui é o grupo q vai fazer o melhor✌️ sorteio pro sesc senac p.i
 
 
