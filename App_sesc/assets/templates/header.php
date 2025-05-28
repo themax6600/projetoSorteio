@@ -15,6 +15,7 @@ $login = NULL;
 $sql = "SELECT * FROM userinfos";
 $select = $conexao->prepare($sql);
 
+
 if ($select->execute()) {
     $userinfos = $select->fetchAll(PDO::FETCH_ASSOC);
 }
