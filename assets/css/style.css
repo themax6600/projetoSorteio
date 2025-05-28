@@ -5,6 +5,7 @@
 }
 
 body{
+    width: 100vw;
     height: 100vh;
 }
 
@@ -27,7 +28,7 @@ main .container .col .row .result{
     background-color: #072e84;
 }
 
-header{
+.navbar{
     background-color: #072e84;
     font-family: 'Georama', sans-serif;
     height: 10%;
@@ -35,7 +36,7 @@ header{
     align-items: center;
 }
 
-header img{
+.navbar img{
     width: 7rem;
 }
 

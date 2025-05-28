@@ -44,7 +44,7 @@ if (!$logado) {
 </head>
 
 <body>
-    <header>
+    <nav class="navbar navbar-expand-lg justify-content-around">
         <div class="container d-flex flex-row">
             <div class="col d-flex align-items-center">
                 <div class="container d-flex align-items-center">
@@ -60,9 +60,9 @@ if (!$logado) {
                 <a href="<?= BASE_URL ?>assets/pages/user.php" class="w-25">
                     <img src="<?= BASE_URL ?>assets/img/user.png" class="rounded-circle w-75" alt="">
                 </a>
-                <h5 class="w-100 h-100 text-center ">
+                <h5 class="ms-2">
                     <?php echo $nomeUser ?>
                 </h5>
             </div>
         </div>
-    </header>
+    </nav>
