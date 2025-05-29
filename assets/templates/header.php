@@ -45,24 +45,28 @@ if (!$logado) {
 
 <body>
     <header>
-        <div class="container d-flex flex-row">
-            <div class="col d-flex align-items-center">
-                <div class="container d-flex align-items-center">
-                    <a href="<?= BASE_URL ?>assets/pages/main.php" class="bg-transparent">
-                        <img src="<?= BASE_URL ?>assets/img/sesc1.png" alt="">
-                    </a>
-                    <a href="<?= BASE_URL ?>assets/pages/main.php" class="bg-transparent">
-                        <img src="<?= BASE_URL ?>assets/img/senac1.png" alt="">
-                    </a>
+        <nav class="navbar navbar-expand-lg w-100 d-flex justify-content-between">
+            <div class="container">
+                <a class="navbar-brand d-flex justify-content-center align-items-center rounded-5 ps-3"
+                    href="./index.html">
+                    <img src="<?= BASE_URL ?>assets/img/sesc1.png" alt="">
+                    <img src="<?= BASE_URL ?>assets/img/senac1.png" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas d-flex align-items-end" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-body bg-light rounded-4 d-flex align-items-center">
+                        <a href="<?= BASE_URL ?>assets/pages/user.php" class="w-50">
+                            <img src="<?= BASE_URL ?>assets/img/user.png" class="rounded-circle w-75" alt="">
+                        </a>
+                        <h5 class="w-100 h-100">
+                            <?php echo $nomeUser ?>
+                        </h5>
+                    </div>
                 </div>
             </div>
-            <div class="col-user bg-light rounded-5 d-flex align-items-center">
-                <a href="<?= BASE_URL ?>assets/pages/user.php" class="w-25">
-                    <img src="<?= BASE_URL ?>assets/img/user.png" class="rounded-circle w-75" alt="">
-                </a>
-                <h5 class="w-100 h-100 text-center ">
-                    <?php echo $nomeUser ?>
-                </h5>
-            </div>
-        </div>
+        </nav>
     </header>

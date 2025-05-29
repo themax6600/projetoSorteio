@@ -14,7 +14,7 @@ include_once('../templates/header.php');
             <a href="<?= BASE_URL ?>assets/pages/sortearAlunoAdm.php" class="btn btn-primary fs-4 p-3 border-0 rounded-4 mt-4">Sortear Aluno</a>
             <a href="<?= BASE_URL ?>assets/pages/listaAdm.php" class="btn btn-primary fs-4 p-3 border-0 rounded-4 mt-4">Ver Lista de Alunos</a>
         <?php }else if ($adm == 0){ ?>
-            <a href="<?= BASE_URL ?>assets/pages/listaAluno.php" class="btn btn-primary fs-4 p-3 border-0 rounded-4 mt-4">Clique para revelar o resultado</a>
+            <a href="<?= BASE_URL ?>assets/pages/sorteio.php" class="btn btn-primary fs-4 p-3 border-0 rounded-4 mt-4">Clique para revelar o resultado</a>
             <?php };?>
     </div>
 </main>
