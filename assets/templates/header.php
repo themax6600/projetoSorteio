@@ -48,7 +48,7 @@ if (!$logado) {
         <nav class="navbar navbar-expand-lg w-100 d-flex justify-content-between">
             <div class="container">
                 <a class="navbar-brand d-flex justify-content-center align-items-center rounded-5 ps-3"
-                    href="./index.html">
+                    href="<?= BASE_URL ?>assets/pages/main.php">
                     <img src="<?= BASE_URL ?>assets/img/sesc1.png" alt="">
                     <img src="<?= BASE_URL ?>assets/img/senac1.png" alt="">
                 </a>

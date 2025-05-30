@@ -63,16 +63,9 @@ header .col-user {
     margin-top: 10rem;
 }
 
-.container-fluid main .container .col img, .img-form {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
 .container-fluid main .container {
     display: flex;
     flex-direction: row;
-    margin-top: 3%;
 }
 
 .container-fluid .container img{

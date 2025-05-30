@@ -30,7 +30,7 @@ $_SESSION['mensagem'] = NULL;
             <img src="<?= BASE_URL ?>assets/img/logo legal.webp" alt="">
         </div>
     </header>
-    <main>
+    <main class="d-flex align-items-center">
         <div class="container bg-white rounded-4 p-3">
             <div class="col d-flex ms-4">
                 <form action="<?= BASE_URL ?>assets/php/login.php" method="POST" class="d-flex flex-column justify-content-center w-100 pe-5 ps-5">
@@ -49,7 +49,7 @@ $_SESSION['mensagem'] = NULL;
                 </form>
             </div>
             <div class="col">
-                <img src="<?= BASE_URL ?>assets/img/edificiosesc.png" class="rounded-4" alt="">
+                <img src="<?= BASE_URL ?>assets/img/edificiosesc.png" class="rounded-4 w-100 h-100" alt="">
             </div>
         </div>
     </main>
