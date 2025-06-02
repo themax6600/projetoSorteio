@@ -15,6 +15,7 @@ include_once('../templates/header.php');
                     </button>
                     <div class="d-flex flex-column justify-content-center align-items-center ms-5">
                         <h4><?php echo $nomeUser ?></h4>
+                        <h4><?php echo $userEmail ?></h4>
                     </div>
                 </div>
                 <h4>Nome</h4>
@@ -24,12 +25,8 @@ include_once('../templates/header.php');
                 <h4>Confirmar Senha</h4>
                 <input type="text" placeholder="********" name="userSobrenome" class="w-75">
                 <div class="col mt-3 w-75 d-flex justify-content-around">
-                    <?php if ($adm == 1) { ?>
-                        <button class=" bg-warning ms-3"> Adicionar ADM </button>
-                    <?php } else if ($adm == 0) { ?>
-                    <?php }; ?>
-                    <button class="btn btn-warning bg-warning w-25"> Confirmar </button>
-                    <button class="btn btn-danger bg-danger w-25"> Sair</button>
+                    <button class="btn btn-warning bg-warning w-30"> Confirmar </button>
+                    <a class="btn btn-danger bg-danger w-25" href="../php/logout.php"> Sair</a>
                 </div>
             </form>
 
@@ -42,7 +39,8 @@ include_once('../templates/header.php');
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <input type="file" name="imgPost" class="form-control" accept="image/png, image/jpeg">
+                                <input type="file" name="imagem_usuario" class="form-control" accept="image/png, image/jpeg">
+                                <input type="text" name="imagem_usuario_cad" value="<?= $imgUser ?>" hidden>
                                 <button type="submit" class="btn btn-primary rounded-4 border-0 mt-2 w-75">Continuar</button>
                             </div>
                         </div>

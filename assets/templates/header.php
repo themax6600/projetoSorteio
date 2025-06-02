@@ -9,8 +9,11 @@ include_once('../data/config.php');
 $logado = $_SESSION['logado'] ?? NULL;
 $nomeUser = $_SESSION['userName'] ?? NULL;
 $IdUser = $_SESSION['userId'] ?? NULL;
+$userEmail = $_SESSION['userEmail'];
 $adm = $_SESSION['adm'];
-$login = NULL;
+$passou = $_SESSION['passou'];
+$imgUser = $_SESSION['imgUser'] ?? NULL;
+
 
 $sql = "SELECT * FROM userinfos";
 $select = $conexao->prepare($sql);
@@ -56,7 +59,7 @@ if (!$logado) {
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="offcanvas d-flex align-items-end" tabindex="-1" id="offcanvasNavbar"
+                <div class="offcanvas offcanvas-end d-flex align-items-end" tabindex="-1" id="offcanvasNavbar"
                     aria-labelledby="offcanvasNavbarLabel">
                     <div class="offcanvas-body bg-light rounded-4 d-flex align-items-center">
                         <a href="<?= BASE_URL ?>assets/pages/user.php" class="w-50">
