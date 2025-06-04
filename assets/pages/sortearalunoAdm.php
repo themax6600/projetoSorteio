@@ -27,14 +27,20 @@ if (isset($_POST['meuBotao'])) {
             <h4 class="w-100 d-flex justify-content-center align-items-center">Sortear Alunos</h4>
         </div>
         <div class="col d-flex flex-row justify-content-around">
-            <div class="row">
+            <div class="row w-50">
                 <div class="container">
                     <h4>Alunos Sorteados:</h4>
                     <?php foreach ($userinfos as $userinfo) { ?>
                         <?php if ($userinfo['adm'] == 1) { ?>
-                            <div class="card border border-dark border-2 bg-success p-2 d-flex flex-row">
+                            <div class="card border border-dark border-2 bg-success  d-flex flex-row w-75 m-2 p-2">
                                 <img src="<?= BASE_URL ?>assets/img/user.png" class="rounded-circle" alt="">
+                                <div class="px-2">
                                 <?= $userinfo['userName']; ?>
+                                <br>
+                                <?= $userinfo['userEmail']; ?>
+                                </div>
+                                
+
 
                             </div>
                         <?php }; ?>

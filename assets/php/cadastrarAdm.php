@@ -19,7 +19,7 @@ if (!$userName || !$userPassword || !$userSobrenome || !$userEmail || !$userCpf)
     exit;
 }
 
-$senhaCriptografada = password_hash($userPassword, PASSWORD_DEFAULT);
+//$senhaCriptografada = password_hash($userPassword, PASSWORD_DEFAULT);
 
 try {
     $sql = "INSERT INTO userinfos (userName, userSobrenome, userEmail, userCpf, userPassword, adm) VALUES (:userName, :userSobrenome, :userEmail, :userCpf, :userPassword, adm)";
@@ -30,7 +30,7 @@ try {
     $insert->bindParam(':userSobrenome', $userSobrenome);
     $insert->bindParam(':userEmail', $userEmail);
     $insert->bindParam(':userCpf', $userCpf);
-    $insert->bindParam(':userPassword', $senhaCriptografada);
+    $insert->bindParam(':userPassword', $userPassword);
     $insert->bindParam(':adm', $adm);
 
 

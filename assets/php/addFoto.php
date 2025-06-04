@@ -4,26 +4,26 @@ $mensagem = $_SESSION['mensagem'] ?? NULL;
 
 include_once('../data/config.php');
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    
-    $imagem_usuario = filter_input(INPUT_POST, 'imagem_usuario_cad', FILTER_SANITIZE_SPECIAL_CHARS);
+$IdUser = filter_input(INPUT_POST, 'IdUser', FILTER_SANITIZE_SPECIAL_CHARS);
 
-    
-    try {
-        $sql = "UPDATE userinfos SET imgPost=:imgPost WHERE userId=:userId";
-        $insert = $conexao->prepare($sql);
-        $insert->bindParam(":imgPost", $imgPost);
+if ($_FILES["imagem_perfil"]["error"] == 0) {
+    $caminho_destino = "imgUser/" . basename($_FILES["imagem_perfil"]["name"]);
+    if (move_uploaded_file($_FILES["imagem_perfil"]["tmp_name"], $caminho_destino)) {
 
-        if ($insert->execute()) {
-            $_SESSION['mensagem'] = " Post criado com sucesso!";
-            header("Location: " . BASE_URL . "assets/pages/user.php");
+        $sql = "UPDATE userinfos SET imgUser=:imgUser WHERE IdUser = :IdUser";
+        $update = $conexao->prepare($sql);
+        $update->bindParam(":imgUser", $caminho_destino);
+        echo "Upload efetuado com sucesso em: " . $caminho_destino;
+        if ($update->execute()) {
+            $_SESSION['mensagem'] = "Perfil atualizado com sucesso";
+            header("Location:" . BASE_URL . "assets/pages/user.php");
+            exit;
         } else {
-            throw new Exception(" Ocorreu um erro ao cadastrar!");
+            throw new Exception("Erro ao atualizar");
         }
-    } catch (exception $e) {
-        $_SESSION['mensagem'] = " Erro " . $e;
-        header("Location: " . BASE_URL . "assets/pages/user.php");
-    } finally {
-        unset($conexao);
+    } else {
+        echo "Problemas ao mover o arquivo.";
     }
+} else {
+    echo "Erro no upload: " . $_FILES["imagem_perfil"]["error"];
 }

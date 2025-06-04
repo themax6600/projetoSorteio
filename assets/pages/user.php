@@ -3,12 +3,13 @@ session_start();
 
 include_once('../data/config.php');
 include_once('../templates/header.php');
+
 ?>
 
 <main class="d-flex align-items-center">
     <div class="container bg-secondary rounded-4 d-flex flex-row bg-opacity-50 w-100 p-3">
         <div class="col d-flex ms-4 mt-5">
-            <form action="#" method="POST" class="w-100">
+            <form action="../php/atualizarSenha.php" method="POST" class="w-100">
                 <div class="d-flex mb-5 w-100 justify-content-start">
                     <button type="button" class="bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <img src="<?= BASE_URL ?>assets/img/user.png" class="rounded-circle" alt="">
@@ -19,18 +20,18 @@ include_once('../templates/header.php');
                     </div>
                 </div>
                 <h4>Nome</h4>
-                <input type="text" placeholder="*****@***.***" name="userSobrenome" class="w-75">
-                <h4>Senha</h4>
-                <input type="text" placeholder="********" name="userSobrenome" class="w-75">
-                <h4>Confirmar Senha</h4>
-                <input type="text" placeholder="********" name="userSobrenome" class="w-75">
+                <input type="text" placeholder="*****@***.***" name="userSobrenome" class="w-75 form-control mb-2">
+                <label for="current-password" class="form-label"><h4>Senha</h4></label>
+                <input type="password" name="senhaUsuario" id="current-password" placeholder="********" name="userSobrenome" class="w-75 form-control mb-2" required>
+                <label for="new-password" class="form-label"><h4>Confirmar Senha</h4></label>
+                <input type="text" name="novaSenha" id="new-password" placeholder="********" name="userSobrenome" class="w-75 form-control mb-2">
                 <div class="col mt-3 w-75 d-flex justify-content-around">
-                    <button class="btn btn-warning bg-warning w-30"> Confirmar </button>
+                    <button type="submit" class="btn btn-warning bg-warning w-30"> Confirmar </button>
                     <a class="btn btn-danger bg-danger w-25" href="../php/logout.php"> Sair</a>
                 </div>
             </form>
 
-            <form action="<?= BASE_URL ?>assets/php/addFoto.php" method="POST">
+            <form action="<?= BASE_URL ?>assets/php/addFoto.php" method="POST" enctype="multipart/form-data">
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -39,9 +40,9 @@ include_once('../templates/header.php');
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <input type="file" name="imagem_usuario" class="form-control" accept="image/png, image/jpeg">
-                                <input type="text" name="imagem_usuario_cad" value="<?= $imgUser ?>" hidden>
-                                <button type="submit" class="btn btn-primary rounded-4 border-0 mt-2 w-75">Continuar</button>
+                                <input type="hidden" name="IdUser" value="<?php echo $IdUser = $_SESSION['userId'] ?? NULL;; ?>">
+                                <input type="file" name="imagem_perfil" />
+                                <input type="submit" value="Upload" />
                             </div>
                         </div>
                     </div>

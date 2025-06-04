@@ -14,7 +14,6 @@ $adm = $_SESSION['adm'];
 $passou = $_SESSION['passou'];
 $imgUser = $_SESSION['imgUser'] ?? NULL;
 
-
 $sql = "SELECT * FROM userinfos";
 $select = $conexao->prepare($sql);
 
@@ -28,7 +27,6 @@ if (!$logado) {
     header("Location: " . BASE_URL . "assets/pages/entrar.php");
     exit;
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

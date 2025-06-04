@@ -1,17 +1,17 @@
 <?php
 session_start();
 include_once('../templates/header.php');
-?>
 
-<?php
-$num = "SELECT * FROM userId WHERE adm = 0";
+$sql = "SELECT * FROM userinfos WHERE adm = 0";
 $select = $conexao->prepare($sql);
+
 if ($select->execute()) {
     $userinfos = $select->fetchAll(PDO::FETCH_ASSOC);
+    $num = count($userinfos);
+} else {
+    $userinfos = [];
+    $num = 0;
 }
-
-$num = count($userinfos);
-
 ?>
 
 <main class="img-fundo">
