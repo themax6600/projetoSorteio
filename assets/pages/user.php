@@ -7,12 +7,15 @@ include_once('../templates/header.php');
 ?>
 
 <main class="d-flex align-items-center">
+    <?php if (isset($mensagem)) { ?>
+        <p class="alert alert-danger mt-2"><?= $mensagem ?></p>
+    <?php }; ?>
     <div class="container bg-secondary rounded-4 d-flex flex-row bg-opacity-50 w-100 p-3">
         <div class="col d-flex ms-4 mt-5">
-            <form action="../php/atualizarSenha.php" method="POST" class="w-100">
+            <form action="<?= BASE_URL ?>assets/php/atualizarSenha.php" method="POST" class="w-100">
                 <div class="d-flex mb-5 w-100 justify-content-start">
                     <button type="button" class="bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <img src="<?= BASE_URL ?>assets/img/user.png" class="rounded-circle" alt="">
+                        <img src="<?= BASE_URL ?>assets/php/<?= $imgUser ?>" class="img-user rounded-circle" alt="">
                     </button>
                     <div class="d-flex flex-column justify-content-center align-items-center ms-5">
                         <h4><?php echo $nomeUser ?></h4>
@@ -20,10 +23,14 @@ include_once('../templates/header.php');
                     </div>
                 </div>
                 <h4>Nome</h4>
-                <input type="text" placeholder="*****@***.***" name="userSobrenome" class="w-75 form-control mb-2">
-                <label for="current-password" class="form-label"><h4>Senha</h4></label>
+                <input type="text" placeholder="<?= $_SESSION['userName'] ?>" name="userName" class="w-75 form-control mb-2">
+                <label for="current-password" class="form-label">
+                    <h4>Senha</h4>
+                </label>
                 <input type="password" name="senhaUsuario" id="current-password" placeholder="********" name="userSobrenome" class="w-75 form-control mb-2" required>
-                <label for="new-password" class="form-label"><h4>Confirmar Senha</h4></label>
+                <label for="new-password" class="form-label">
+                    <h4>Confirmar Senha</h4>
+                </label>
                 <input type="text" name="novaSenha" id="new-password" placeholder="********" name="userSobrenome" class="w-75 form-control mb-2">
                 <div class="col mt-3 w-75 d-flex justify-content-around">
                     <button type="submit" class="btn btn-warning bg-warning w-30"> Confirmar </button>
@@ -36,13 +43,14 @@ include_once('../templates/header.php');
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Atualizar Imagem de perfil</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body d-flex flex-column align-items-center">
+                                <img src="<?= BASE_URL ?>assets/php/<?= $imgUser ?>" class="img-user rounded-circle mb-3" alt="">
                                 <input type="hidden" name="IdUser" value="<?php echo $IdUser = $_SESSION['userId'] ?? NULL;; ?>">
                                 <input type="file" name="imagem_perfil" />
-                                <input type="submit" value="Upload" />
+                                <input type="submit" value="Upload" class="btn text-white mt-3 w-100" />
                             </div>
                         </div>
                     </div>

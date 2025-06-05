@@ -1,6 +1,6 @@
 <?php 
 $dbHost = "localhost";
-$dbNome = "dbtarefamarcelo";
+$dbNome = "sesc_site";
 $dbUser = "root";
 $dbSenha = "";
 
@@ -10,6 +10,6 @@ $conexao = new PDO("mysql:host=$dbHost; dbname=$dbNome; charset=utf8", $dbUser, 
     echo 'Erro ao conectar com o banco de dados: ' . $erro->getMessage();
 }
 
-define('BASE_URL', 'http://172.17.34.253:1200/projetos/202300005/3Ano_ProjetoSoteador/Grupo06/');
+define('BASE_URL', 'http://192.168.1.108/PROJETOS2025/projetoSorteio/');
 
 ?>

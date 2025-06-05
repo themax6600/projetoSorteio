@@ -13,8 +13,9 @@ main{
     height: 90%;
 }
 
-main .container .col img{
+.img-user{
     width: 60px;
+    height: 60px;
 }
 
 main .container .col .card-group .container .row{
@@ -66,10 +67,6 @@ header .col-user {
 .container-fluid main .container {
     display: flex;
     flex-direction: row;
-}
-
-.container-fluid .container img{
-    width: 15rem;
 }
 
 .container-fluid .container-lg a, .numParticipantes{

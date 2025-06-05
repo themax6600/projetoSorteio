@@ -12,7 +12,6 @@ $IdUser = $_SESSION['userId'] ?? NULL;
 $userEmail = $_SESSION['userEmail'];
 $adm = $_SESSION['adm'];
 $passou = $_SESSION['passou'];
-$imgUser = $_SESSION['imgUser'] ?? NULL;
 
 $sql = "SELECT * FROM userinfos";
 $select = $conexao->prepare($sql);
@@ -22,11 +21,36 @@ if ($select->execute()) {
     $userinfos = $select->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// Verifica se esta logado
+
+
+
 if (!$logado) {
     header("Location: " . BASE_URL . "assets/pages/entrar.php");
     exit;
 }
+
+
+
+try {
+    // Consulta para buscar o caminho da imagem de perfil
+    $sql = "SELECT imgUser FROM userinfos WHERE userId = :userId";
+    $select = $conexao->prepare($sql);
+    $select->bindParam(':userId', $IdUser);
+    $select->execute();
+
+    // Verifica se encontrou o usuário
+    if ($select->rowCount() > 0) {
+        $dados = $select->fetch(PDO::FETCH_ASSOC);
+        $imgUser = $dados['imgUser'];
+
+        
+    } else {
+        echo "Usuário não encontrado.";
+    }
+} catch (PDOException $e) {
+    echo "Erro na consulta: " . $e->getMessage();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -59,9 +83,9 @@ if (!$logado) {
                 </button>
                 <div class="offcanvas offcanvas-end d-flex align-items-end" tabindex="-1" id="offcanvasNavbar"
                     aria-labelledby="offcanvasNavbarLabel">
-                    <div class="offcanvas-body bg-light rounded-4 d-flex align-items-center">
-                        <a href="<?= BASE_URL ?>assets/pages/user.php" class="w-50">
-                            <img src="<?= BASE_URL ?>assets/img/user.png" class="rounded-circle w-75" alt="">
+                    <div class="offcanvas-body bg-light rounded-4 d-flex align-items-center w-25">
+                        <a href="<?= BASE_URL ?>assets/pages/user.php" class="w-100">
+                            <img src="<?= BASE_URL ?>assets/php/<?= $imgUser?>" class="img-user rounded-circle p-1" alt="">
                         </a>
                         <h5 class="w-100 h-100">
                             <?php echo $nomeUser ?>

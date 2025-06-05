@@ -27,7 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     $_SESSION['userName'] = $login['userName'];
                     $_SESSION['adm'] = $login['adm'];
                     $_SESSION['passou'] = $login['passou'];
-                    $_SESSION['imgUser'] = $login['imgUser'];
                     header("Location: ../pages/main.php");
                     exit;
                 }

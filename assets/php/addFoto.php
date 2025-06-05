@@ -10,12 +10,12 @@ if ($_FILES["imagem_perfil"]["error"] == 0) {
     $caminho_destino = "imgUser/" . basename($_FILES["imagem_perfil"]["name"]);
     if (move_uploaded_file($_FILES["imagem_perfil"]["tmp_name"], $caminho_destino)) {
 
-        $sql = "UPDATE userinfos SET imgUser=:imgUser WHERE IdUser = :IdUser";
+        $sql = "UPDATE userinfos SET imgUser=:imgUser WHERE userId=$IdUser";
         $update = $conexao->prepare($sql);
         $update->bindParam(":imgUser", $caminho_destino);
-        echo "Upload efetuado com sucesso em: " . $caminho_destino;
+
         if ($update->execute()) {
-            $_SESSION['mensagem'] = "Perfil atualizado com sucesso";
+            $_SESSION['mensagem'] = "Foto de perfil atualizada.";
             header("Location:" . BASE_URL . "assets/pages/user.php");
             exit;
         } else {
