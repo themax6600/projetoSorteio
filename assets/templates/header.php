@@ -42,8 +42,6 @@ try {
     if ($select->rowCount() > 0) {
         $dados = $select->fetch(PDO::FETCH_ASSOC);
         $imgUser = $dados['imgUser'];
-
-        
     } else {
         echo "Usuário não encontrado.";
     }
@@ -85,7 +83,12 @@ try {
                     aria-labelledby="offcanvasNavbarLabel">
                     <div class="offcanvas-body bg-light rounded-4 d-flex align-items-center w-25">
                         <a href="<?= BASE_URL ?>assets/pages/user.php" class="w-100">
-                            <img src="<?= BASE_URL ?>assets/php/<?= $imgUser?>" class="img-user rounded-circle p-1" alt="">
+                            <?php if ($imgUser == "") { ?>
+                                <img src="<?= BASE_URL ?>assets/img/user.png" class="img-user rounded-circle p-1" alt="">
+                                
+                            <?php } else { ?>
+                                <img src="<?= BASE_URL ?>assets/php/<?= $imgUser ?>" class="img-user rounded-circle p-1" alt="">
+                            <?php }; ?>
                         </a>
                         <h5 class="w-100 h-100">
                             <?php echo $nomeUser ?>

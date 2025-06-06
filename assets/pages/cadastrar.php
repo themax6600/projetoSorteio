@@ -27,11 +27,12 @@ $_SESSION['mensagem'] = NULL;
 <body class="container-fluid">
     <header>
         <div class="container d-flex justify-content-center mt-3">
-            <img src="<?= BASE_URL ?>assets/img/logo legal.webp" alt="">
+            <img src="<?= BASE_URL ?>assets/img/sesc1.png" alt="">
+            <img src="<?= BASE_URL ?>assets/img/senac1.png" alt="">
         </div>
     </header>
     <main class="d-flex align-items-center">
-        <div class="container bg-white rounded-4 p-3">
+        <div class="container bg-white rounded-4 p-3 ">
             <div class="col d-flex ms-4">
                 <form action="<?= BASE_URL ?>assets/php/cadastro.php" method="POST" class="d-flex flex-column justify-content-center w-100 pe-5 ps-5">
                     <h1 class="text-center">CADASTRAR</h1>

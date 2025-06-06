@@ -27,7 +27,8 @@ $_SESSION['mensagem'] = NULL;
 <body class="container-fluid">
     <header>
         <div class="container d-flex justify-content-center mt-3">
-            <img src="<?= BASE_URL ?>assets/img/logo legal.webp" alt="">
+            <img src="<?= BASE_URL ?>assets/img/sesc1.png" alt="">
+            <img src="<?= BASE_URL ?>assets/img/senac1.png" alt="">
         </div>
     </header>
     <main class="d-flex align-items-center">

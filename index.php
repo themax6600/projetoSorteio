@@ -28,13 +28,14 @@ $_SESSION['mensagem'] = NULL;
 <body class="container-fluid">
     <header>
         <div class="container d-flex justify-content-center mt-3">
-            <img src="<?= BASE_URL ?>assets/img/logo legal.webp" alt="">
+            <img src="<?= BASE_URL ?>assets/img/sesc1.png" alt="">
+            <img src="<?= BASE_URL ?>assets/img/senac1.png" alt="">
         </div>
     </header>
     <main>
         <div class="container-lg d-flex justify-content-center ">
-            <a href="<?= BASE_URL ?>assets/pages/entrar.php" class="btn btn-warning p-1 border-0 rounded-3 ms-4 fs-4 w-25">Logar</a>
-            <a href="<?= BASE_URL ?>assets/pages/cadastrar.php" class="btn btn-warning p-1 border-0 rounded-3 ms-4 fs-4 w-25">Cadastrar</a>
+            <a href="<?= BASE_URL ?>assets/pages/entrar.php" class="btn btn-warning p-1 border-0 rounded-3 ms-4 fs-4 w-25 fw-bold text-dark">Logar</a>
+            <a href="<?= BASE_URL ?>assets/pages/cadastrar.php" class="btn btn-warning p-1 border-0 rounded-3 ms-4 fs-4 w-25 fw-bold text-dark">Cadastrar</a>
         </div>
         <div class="container-lg d-flex justify-content-center ">
             <a href="<?= BASE_URL ?>assets/pages/entrarAdm.php" class="text-warning bg-transparent">Sou administrador</a>
