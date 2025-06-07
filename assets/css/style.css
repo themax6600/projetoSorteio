@@ -21,7 +21,7 @@ main{
 main .container .col .card-group .container .row{
     background-color: #FFE2B4;
 }
-main .container .col .row a{
+main .container .col .row a, main .container .col .row .sorteio{
     background-color: #fbb800;
 }
 main .container .col .row .result{

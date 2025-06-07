@@ -22,18 +22,18 @@ if (isset($_POST['meuBotao'])) {
 
 <main>
     <div class="container">
-        <div class="col d-flex flex-row text-center mt-4">
-            <a href="<?= BASE_URL ?>assets/pages/main.php"><img src="../img/seta.png" alt=""></a>
+        <div class="col d-flex flex-row text-center mt-4 w-75">
+            <a href="<?= BASE_URL ?>assets/pages/main.php"><img src="../img/seta.png" alt="" class="w-25"></a>
             <h4 class="w-100 d-flex justify-content-center align-items-center">Sortear Alunos</h4>
         </div>
-        <div class="col d-flex flex-row justify-content-around">
+        <div class="col d-flex flex-row justify-content-around mt-4">
             <div class="row w-50">
                 <div class="container">
                     <h4>Alunos Sorteados:</h4>
                     <?php foreach ($userinfos as $userinfo) { ?>
                         <?php if ($userinfo['adm'] == 1) { ?>
                             <div class="card border border-dark border-2 bg-success  d-flex flex-row w-75 m-2 p-2">
-                                <img src="<?= BASE_URL ?>assets/img/user.png" class="rounded-circle" alt="">
+                                <img src="<?= BASE_URL ?>assets/img/user.png" class="rounded-circle w-25" alt="">
                                 <div class="px-2">
                                 <?= $userinfo['userName']; ?>
                                 <br>
@@ -48,10 +48,10 @@ if (isset($_POST['meuBotao'])) {
                 </div>
             </div>
             <div class="row d-flex align-items-center">
-                <form method="post">
-                    <button type="submit" name="meuBotao">Sortear</button>
+                <form method="post" class="w-100">
+                    <button type="submit" name="meuBotao" class="sorteio btn btn-primary fs-2 w-100 border-0 text-dark fw-bold">Sortear</button>
                 </form>
-                <a href="#" class="result btn btn-primary fs-1">Lançar resultados</a>
+                <a href="#" class="result btn btn-primary fs-2 w-100 fw-bold">Lançar resultados</a>
             </div>
         </div>
     </div>

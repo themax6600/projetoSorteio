@@ -5,8 +5,8 @@ include_once('../templates/header.php');
 
 <main>
     <div class="container">
-        <div class="col d-flex flex-row text-center mt-4">
-            <a href="<?= BASE_URL ?>assets/pages/main.php"><img src="../img/seta.png" alt=""></a>
+        <div class="col d-flex flex-row text-center mt-4 w-75">
+            <a href="<?= BASE_URL ?>assets/pages/main.php"><img src="../img/seta.png" alt="" class="w-25"></a>
             <h4 class="w-100 d-flex justify-content-center align-items-center">Lista de Alunos</h4>
         </div>
         <div class="col">
