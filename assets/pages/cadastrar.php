@@ -25,7 +25,7 @@ $_SESSION['mensagem'] = NULL;
 </head>
 
 <body class="container-fluid">
-    <header>
+    <header class="mb-5">
         <div class="container d-flex justify-content-center mt-3">
             <img src="<?= BASE_URL ?>assets/img/sesc1.png" alt="">
             <img src="<?= BASE_URL ?>assets/img/senac1.png" alt="">

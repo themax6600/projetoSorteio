@@ -11,9 +11,7 @@ if ($select->execute()) {
     $sorteio = $select->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function minhaFuncao() {
-
-};
+function minhaFuncao() {};
 
 if (isset($_POST['meuBotao'])) {
     minhaFuncao();
@@ -26,22 +24,23 @@ if (isset($_POST['meuBotao'])) {
             <a href="<?= BASE_URL ?>assets/pages/main.php"><img src="../img/seta.png" alt="" class="w-25"></a>
             <h4 class="w-100 d-flex justify-content-center align-items-center">Sortear Alunos</h4>
         </div>
-        <div class="col d-flex flex-row justify-content-around mt-4">
-            <div class="row w-50">
+        <div class="col d-flex justify-content-around mt-4">
+            <div class="row">
                 <div class="container">
                     <h4>Alunos Sorteados:</h4>
                     <?php foreach ($userinfos as $userinfo) { ?>
                         <?php if ($userinfo['adm'] == 1) { ?>
-                            <div class="card border border-dark border-2 bg-success  d-flex flex-row w-75 m-2 p-2">
-                                <img src="<?= BASE_URL ?>assets/img/user.png" class="rounded-circle w-25" alt="">
+                            <div class="card border border-dark border-2 bg-success d-flex flex-row align-items-center justify-content-between m-2 p-2">
                                 <div class="px-2">
-                                <?= $userinfo['userName']; ?>
-                                <br>
-                                <?= $userinfo['userEmail']; ?>
+                                    <div class="container d-flex align-items-center">
+                                        <img src="<?= BASE_URL ?>assets/img/user.png" class="img-user rounded-circle" alt="">
+                                        <h5 class="fw-bold text-light ps-1"><?= $userinfo['userName']; ?></h5>
+                                    </div>
+                                    <div class="container">
+                                    <h6 class="text-light"><?= $userinfo['userEmail']; ?></h6>
+                                    </div>
                                 </div>
-                                
-
-
+                                <a href="<?= BASE_URL ?>assets/pages/listaAdm.php" class="border-0 rounded-4 text-black fw-bold p-2">Informações</a>
                             </div>
                         <?php }; ?>
                     <?php }; ?>

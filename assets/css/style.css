@@ -75,7 +75,7 @@ header .col-user {
 }
 
 @media screen and (max-width: 820px) {
-    .container-fluid main .container{
+    .container-fluid main .container, main .col{
         flex-direction: column;
     }
 }
