@@ -57,7 +57,7 @@ $_SESSION['mensagem'] = NULL;
                     </div>
                 </form>
             </div>
-            <div class="col">
+            <div class="col ">
                 <img src="<?= BASE_URL ?>assets/img/ensinoMedioPronto.png" class="imgPrincipal rounded-4 w-100 h-100 " alt="">
             </div>
         </div>
