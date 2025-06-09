@@ -42,6 +42,7 @@ try {
     if ($select->rowCount() > 0) {
         $dados = $select->fetch(PDO::FETCH_ASSOC);
         $imgUser = $dados['imgUser'];
+        $_SESSION['imgUser'] = $imgUser;
     } else {
         echo "Usuário não encontrado.";
     }
@@ -75,9 +76,15 @@ try {
                     <img src="<?= BASE_URL ?>assets/img/sesc1.png" alt="">
                     <img src="<?= BASE_URL ?>assets/img/senac1.png" alt="">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <button class="navbar-toggler" type="button">
+                    <a href="<?= BASE_URL ?>assets/pages/user.php" class="w-100">
+                        <?php if ($imgUser == "") { ?>
+                            <img src="<?= BASE_URL ?>assets/img/user.png" class="img-user rounded-circle p-1" alt="">
+
+                        <?php } else { ?>
+                            <img src="<?= BASE_URL ?>assets/php/<?= $imgUser ?>" class="img-user rounded-circle p-1" alt="">
+                        <?php }; ?>
+                    </a>
                 </button>
                 <div class="offcanvas offcanvas-end d-flex align-items-end" tabindex="-1" id="offcanvasNavbar"
                     aria-labelledby="offcanvasNavbarLabel">
@@ -85,7 +92,7 @@ try {
                         <a href="<?= BASE_URL ?>assets/pages/user.php" class="w-100">
                             <?php if ($imgUser == "") { ?>
                                 <img src="<?= BASE_URL ?>assets/img/user.png" class="img-user rounded-circle p-1" alt="">
-                                
+
                             <?php } else { ?>
                                 <img src="<?= BASE_URL ?>assets/php/<?= $imgUser ?>" class="img-user rounded-circle p-1" alt="">
                             <?php }; ?>

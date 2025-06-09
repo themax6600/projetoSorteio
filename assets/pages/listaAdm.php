@@ -16,16 +16,16 @@ include_once('../templates/header.php');
                         <div class="container ps-2 mb-3">
                             <div class="row">
                                 <div class="col border border-dark border-2">
-                                    <?= $userinfo['userName']; ?>
+                                    Nome: <?= $userinfo['userName']; ?>
+                                </div>
+                                <div class="col border border-dark border-2">
+                                    Sobrenome: <?= $userinfo['userSobrenome']; ?>
                                 </div>
                                 <div class="col border border-dark border-2">
                                     Email: <?= $userinfo['userEmail']; ?>
                                 </div>
                                 <div class="col border border-dark border-2">
                                     CPF: <?= $userinfo['userCpf']; ?>
-                                </div>
-                                <div class="col border border-dark border-2">
-                                    Idade: <?= $userinfo['userName']; ?>
                                 </div>
                             </div>
                         </div>

@@ -22,8 +22,10 @@ if ($_FILES["imagem_perfil"]["error"] == 0) {
             throw new Exception("Erro ao atualizar");
         }
     } else {
-        echo "Problemas ao mover o arquivo.";
+        $_SESSION['mensagem'] = "Erro no upload";
+    header("Location:" . BASE_URL . "assets/pages/user.php");
     }
 } else {
-    echo "Erro no upload: " . $_FILES["imagem_perfil"]["error"];
+    $_SESSION['mensagem'] = "Erro no upload";
+    header("Location:" . BASE_URL . "assets/pages/user.php");
 }

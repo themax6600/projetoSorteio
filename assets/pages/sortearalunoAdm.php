@@ -16,6 +16,14 @@ function minhaFuncao() {};
 if (isset($_POST['meuBotao'])) {
     minhaFuncao();
 };
+
+if (isset($_GET['ids'])) {
+    $ids = explode(',', $_GET['ids']);
+    print_r($ids);
+} else {
+    echo "Nenhum ID de usuário fornecido.";
+}
+
 ?>
 
 <main>
@@ -34,10 +42,10 @@ if (isset($_POST['meuBotao'])) {
                                 <div class="px-2">
                                     <div class="container d-flex align-items-center">
                                         <img src="<?= BASE_URL ?>assets/img/user.png" class="img-user rounded-circle" alt="">
-                                        <h5 class="fw-bold text-light ps-1"><?= $userinfo['userName']; ?></h5>
+                                        <h5 class="fw-bold text-light ps-1"><?= $userinfo['userName'] ?> <?= $userinfo['userSobrenome'] ?></h5>
                                     </div>
                                     <div class="container">
-                                    <h6 class="text-light"><?= $userinfo['userEmail']; ?></h6>
+                                        <h6 class="text-light"><?= $userinfo['userEmail']; ?></h6>
                                     </div>
                                 </div>
                                 <a href="<?= BASE_URL ?>assets/pages/listaAdm.php" class="border-0 rounded-4 text-black fw-bold p-2">Informações</a>
@@ -47,10 +55,18 @@ if (isset($_POST['meuBotao'])) {
                 </div>
             </div>
             <div class="row d-flex align-items-center">
-                <form method="post" class="w-100">
+                <form method="post" action="<?= BASE_URL ?>assets/php/sortear.php" class="w-100">
+                    <input type="hidden" name="userName" value="<?php echo $nomeUser = $_SESSION['userName'] ?? NULL;?>">
+                    <input type="hidden" name="userName" value="<?php echo $nomeUser = $_SESSION['userName'] ?? NULL;?>">
+                    <input type="hidden" name="userName" value="<?php echo $nomeUser = $_SESSION['userName'] ?? NULL;?>">
+                    <input type="hidden" name="userName" value="<?php echo $nomeUser = $_SESSION['userName'] ?? NULL;?>">
+                    <input type="hidden" name="userName" value="<?php echo $nomeUser = $_SESSION['userName'] ?? NULL;?>">
                     <button type="submit" name="meuBotao" class="sorteio btn btn-primary fs-2 w-100 border-0 text-dark fw-bold">Sortear</button>
                 </form>
                 <a href="#" class="result btn btn-primary fs-2 w-100 fw-bold">Lançar resultados</a>
+                <?php if (isset($mensagem)) { ?>
+                    <p class="alert alert-danger mt-2"><?= $mensagem ?></p>
+                <?php }; ?>
             </div>
         </div>
     </div>

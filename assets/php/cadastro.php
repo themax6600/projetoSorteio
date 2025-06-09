@@ -14,9 +14,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 if (!$userName || !$userPassword || !$userSobrenome || !$userEmail || !$userCpf) {
     $_SESSION['mensagem'] = "Preencha todos os campos!";
-    header('Location: ' . BASE_URL . 'assets/pages/cadastrar.php');
+    header('Location: ' . BASE_URL . 'assets/pages/main.php');
     exit;
 }
+
+    $sql = "SELECT * FROM userinfos WHERE userEmail = :userEmail";
+    $select = $conexao->prepare($sql);
+    $select->bindParam(':userEmail', $userEmail);
+    $select->execute();
+    $login = $select->fetch(PDO::FETCH_ASSOC);
+
+    if ($login) {
+        $_SESSION['mensagem'] = "EMAIL JÁ CADASTRADO";
+        header('Location: ' . BASE_URL . 'assets/pages/cadastrar.php');
+        exit;
+    }
 
 $senhaCriptografada = password_hash($userPassword, PASSWORD_DEFAULT);
 
@@ -38,6 +50,7 @@ try {
         exit;
     } else {
         throw new Exception("Ocorreu um probleminha");
+    header('Location: ' . BASE_URL . 'assets/pages/main.php');
     }
 } catch (Exception $e) {
     $_SESSION['mensagem'] = "Ocorreu um erro ao cadastrar / Usuário já cadastrado!";

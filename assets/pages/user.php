@@ -7,11 +7,11 @@ include_once('../templates/header.php');
 ?>
 
 <main class="d-flex align-items-center">
-    <div class="container bg-secondary rounded-4 d-flex flex-row bg-opacity-50 w-100 p-3">
+    <div class="principal container bg-secondary rounded-4 d-flex bg-opacity-50 p-3">
         <div class="col d-flex ms-4 mt-5">
             <form action="<?= BASE_URL ?>assets/php/atualizarSenha.php" method="POST" class="w-100">
-                <div class="d-flex mb-5 w-100 justify-content-start">
-                    <button type="button" class="bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <div class="d-flex mb-5 w-100 justify-content-start informacoes">
+                    <button type="button" class="img_user bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <?php if ($imgUser == "") { ?>
                             <img src="<?= BASE_URL ?>assets/img/user.png" class="img-user rounded-circle p-1" alt="">
 
@@ -24,19 +24,20 @@ include_once('../templates/header.php');
                         <h4><?php echo $userEmail ?></h4>
                     </div>
                 </div>
-                <h4>Nome</h4>
-                <input type="text" placeholder="<?= $_SESSION['userName'] ?>" name="userName" class="w-75 form-control mb-2">
+                <label for="usuario" class="form-label">Nome</label>
+                <input type="text" name="nomeAtualizado" id="userName
+                " placeholder="<?= $_SESSION['userName'] ?>" class="w-75 form-control mb-2">
                 <label for="current-password" class="form-label">
                     <h4>Senha</h4>
                 </label>
-                <input type="password" name="senhaUsuario" id="current-password" placeholder="********" name="userSobrenome" class="w-75 form-control mb-2" required>
-                <label for="new-password" class="form-label">
+                <input type="password" name="userPassword" id="current-password" placeholder="********" name="userSobrenome" class="w-75 form-control mb-2" required>
+                <label for="novaSenha" class="form-label">
                     <h4>Confirmar Senha</h4>
                 </label>
-                <input type="text" name="novaSenha" id="new-password" placeholder="********" name="userSobrenome" class="w-75 form-control mb-2">
-                <div class="col mt-3 w-75 d-flex justify-content-around">
-                    <button type="submit" class="btn btn-warning bg-warning w-30"> Confirmar </button>
-                    <a class="btn btn-danger bg-danger w-25" href="../php/logout.php"> Sair</a>
+                <input type="text" name="novaSenha" id="novaSenha" placeholder="********" name="userSobrenome" class="w-75 form-control mb-2">
+                <div class="botao col mt-3 w-75 d-flex justify-content-around">
+                    <button type="submit" class="button_user btn btn-warning bg-warning w-30"> Confirmar </button>
+                    <a class="sair-botao btn btn-danger bg-danger w-50" href="../php/logout.php"> Sair</a>
                 </div>
                 <?php if (isset($mensagem)) { ?>
                     <p class="alert alert-danger mt-2"><?= $mensagem ?></p>
@@ -67,8 +68,8 @@ include_once('../templates/header.php');
             </form>
 
         </div>
-        <div class="col">
-            <img src="<?= BASE_URL ?>assets/img/edificiosesc.png" class="rounded-4 w-100 h-100" alt="">
+        <div class="col imagem_user">
+            <img src="<?= BASE_URL ?>assets/img/ensinoMedioPronto.png" class="imagem_user rounded-4 w-100 h-100" alt="">
         </div>
     </div>
     <?php
