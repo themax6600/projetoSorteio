@@ -10,19 +10,26 @@ include_once('../templates/header.php');
     <div class="principal container bg-secondary rounded-4 d-flex bg-opacity-50 p-3">
         <div class="col d-flex ms-4 mt-5">
             <form action="<?= BASE_URL ?>assets/php/atualizarSenha.php" method="POST" class="w-100">
-                <div class="d-flex mb-5 w-100 justify-content-start informacoes">
+                <div class="d-flex mb-5 w-100 justify-content-start informacoes <?php if ($adm == 1){ ?> flex-column <?php } ?>">
+                    <?php if ($adm == 1){ ?>
+                        <div class="d-flex justify-content-center align-items-center w-100 h-25 mb-2"> 
+                            <h4>Conta de adm</h4>
+                        </div>
+                        <?php } ?>
+                        <div class="d-flex flex-row">
                     <button type="button" class="img_user bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <?php if ($imgUser == "") { ?>
                             <img src="<?= BASE_URL ?>assets/img/user.png" class="img-user rounded-circle p-1" alt="">
-
                         <?php } else { ?>
                             <img src="<?= BASE_URL ?>assets/php/<?= $imgUser ?>" class="img-user rounded-circle p-1" alt="">
                         <?php }; ?>
                     </button>
+
                     <div class="d-flex flex-column justify-content-center align-items-center ms-5">
                         <h4><?php echo $nomeUser ?></h4>
                         <h4><?php echo $userEmail ?></h4>
                     </div>
+                                    </div>
                 </div>
                 <label for="usuario" class="form-label">Nome</label>
                 <input type="text" name="nomeAtualizado" id="userName
@@ -69,7 +76,7 @@ include_once('../templates/header.php');
 
         </div>
         <div class="col imagem_user">
-            <img src="<?= BASE_URL ?>assets/img/ensinoMedioPronto.png" class="imagem_user rounded-4 w-100 h-100" alt="">
+            <img src="<?= BASE_URL ?>assets/img/ensinoMedioPronto.png" class="rounded-4 w-100 h-100" alt="">
         </div>
     </div>
     <?php

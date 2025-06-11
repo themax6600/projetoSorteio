@@ -48,8 +48,8 @@ $_SESSION['mensagem'] = NULL;
                     </div>
                 </form>
             </div>
-            <div class="col">
-                <img src="<?= BASE_URL ?>assets/img/ensinoMedioPronto.png" class="rounded-4 w-100 h-100" alt="">
+            <div class="col w-100 d-flex justify-content-center">
+                <img src="<?= BASE_URL ?>assets/img/ensinoMedioPronto.png" class="rounded-4" alt="">
             </div>
         </div>
     </main>

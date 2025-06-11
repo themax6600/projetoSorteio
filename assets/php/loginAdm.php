@@ -23,8 +23,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 if ($login['userCpf'] === $userCpf && password_verify($userPassword, $login['userPassword']) && $login['adm'] == 1) {
                     $_SESSION['logado'] = TRUE;
                     $_SESSION['userId'] = $login['userId'];
+                    $_SESSION['userEmail'] = $login['userEmail'];
                     $_SESSION['userName'] = $login['userName'];
+                    $_SESSION['userSobrenome'] = $login['userSobrenome'];
+                    $_SESSION['userCpf'] = $login['userCpf'];
                     $_SESSION['adm'] = $login['adm'];
+                    $_SESSION['passou'] = $login['passou'];
                     header("Location: ../pages/main.php");
                     exit;
                 }

@@ -32,7 +32,7 @@ $_SESSION['mensagem'] = NULL;
         </div>
     </header>
     <main class="d-flex align-items-center">
-        <div class="container bg-white rounded-4 p-3 h-50">
+        <div class="container bg-white rounded-4 p-3 h-50 ">
             <div class="col d-flex ms-4">
                 <form action="<?= BASE_URL ?>assets/php/login.php" method="POST" class="d-flex flex-column justify-content-center w-100 pe-5 ps-5">
                     <h1 class="text-center">ENTRAR</h1>
@@ -49,8 +49,8 @@ $_SESSION['mensagem'] = NULL;
                     </div>
                 </form>
             </div>
-            <div class="col">
-                <img src="<?= BASE_URL ?>assets/img/ensinoMedioPronto.png" class="rounded-4 w-100 h-100" alt="">
+            <div class="w-50 h-100  d-flex justify-content-center">
+                <img src="<?= BASE_URL ?>assets/img/ensinoMedioPronto.png" class="  rounded-4  w-75 h-100 " alt="">
             </div>
         </div>
     </main>

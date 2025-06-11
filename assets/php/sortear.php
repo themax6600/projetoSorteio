@@ -1,7 +1,6 @@
 <?php
 session_start();
-$mensagem = $_SESSION['mensagem'] ?? NULL;
-
+$mensagem = $_SESSION['mensagem'] ?? null;
 include_once('../data/config.php');
 
 $sql = "SELECT * FROM userinfos WHERE adm = 0";
@@ -15,6 +14,8 @@ if ($select->execute()) {
 
         if (count($userinfos) < $numeroSorteados) {
             $_SESSION['mensagem'] = "Não há usuários suficientes para o sorteio.";
+            header("Location:" . BASE_URL . "assets/pages/sortearAlunoAdm.php");
+            exit;
         } else {
             $indicesSorteados = array_rand($userinfos, $numeroSorteados);
 
@@ -22,25 +23,40 @@ if ($select->execute()) {
                 $indicesSorteados = [$indicesSorteados];
             }
 
-            $ids = implode(',', array_map(function ($indice) use ($userinfos) {
-                return $userinfos[$indice]['userId'];
-            }, $indicesSorteados));
+            $rows = [];
+            foreach ($indicesSorteados as $indice) {
+                $user = $userinfos[$indice];
+                $rows[] = [
+                    'userName' => $user['userName'],
+                    'userCpf' => $user['userCpf'],
+                    'imgUser' => $user['imgUser'],
+                    'userId' => $user['userId'],
+                    'userEmail' => $user['userEmail'],
+                    'userSobrenome' => $user['userSobrenome']
+                ];
+            }
 
-            $sql = "INSERT INTO usersorteados (userName, userSobrenome, userCpf, imgUser, userId) VALUES (:userName, :userSobrenome, :userCpf, :imgUser, :userId)";
+            $sql = "INSERT INTO usersorteados (userName, userCpf, imgUser, userId, userEmail, userSobrenome) VALUES ";
+            $placeholders = [];
+            $params = [];
+
+            foreach ($rows as $row) {
+                $placeholders[] = "(?, ?, ?, ?, ?, ?)";
+                foreach ($row as $key => $value) {
+                    $params[] = $value;
+                }
+            }
+
+            $sql .= implode(", ", $placeholders);
             $insert = $conexao->prepare($sql);
-            $insert->bindParam(':userName', $userName);
-            $insert->bindParam(':userSobrenome', $userSobrenome);
-            $insert->bindParam(':userCpf', $userCpf);
-            $insert->bindParam(':imgUser', $imgUser);
-            $insert->bindParam(':userId', $userId);
 
-            if ($insert->execute() && $insert->rowCount() > 0) {
+            if ($insert->execute($params)) {
                 $_SESSION['mensagem'] = "Alunos sorteados.";
+                $ids = implode(',', array_map(fn($indice) => $userinfos[$indice]['userId'], $indicesSorteados));
                 header("Location:" . BASE_URL . "assets/pages/sortearAlunoAdm.php?ids=$ids");
                 exit();
             } else {
-                throw new Exception("Ocorreu um probleminha");
-                header('Location: ' . BASE_URL . 'assets/pages/sortearAlunoAdm');
+                throw new Exception("Ocorreu um erro ao inserir os dados.");
             }
         }
     } else {
@@ -49,3 +65,4 @@ if ($select->execute()) {
 } else {
     echo "Erro ao executar a consulta.";
 }
+?>
