@@ -15,7 +15,7 @@ $_SESSION['mensagem'] = NULL;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesc VAAAAI SESQUISENAQUIOIOO</title>
+    <title>Sesc</title>
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/style.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/bootstrap/css/bootstrap.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,7 +29,7 @@ $_SESSION['mensagem'] = NULL;
     <header>
         <div class="container d-flex justify-content-center mt-3">
             <img src="<?= BASE_URL ?>assets/img/sesc1.png" alt="">
-            <img src="<?= BASE_URL ?>assets/img/senac1.png" alt="">
+            <img src="<?= BASE_URL ?>assets/img/site_senac.png" alt="">
         </div>
     </header>
     <main>

@@ -12,6 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $userCpf = filter_input(INPUT_POST, "userCpf", FILTER_SANITIZE_SPECIAL_CHARS);
             $userPassword = filter_input(INPUT_POST, "userPassword", FILTER_SANITIZE_SPECIAL_CHARS);
 
+            $userCpf = preg_replace('/\D/', '', $userCpf);
+
             $sql = "SELECT * FROM userinfos WHERE userCpf = :userCpf";
             $select = $conexao->prepare($sql);
             $select->bindParam(':userCpf', $userCpf);

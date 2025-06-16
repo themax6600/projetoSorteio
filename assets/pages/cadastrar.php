@@ -28,7 +28,7 @@ $_SESSION['mensagem'] = NULL;
     <header class="mb-5">
         <div class="container d-flex justify-content-center mt-3">
             <img src="<?= BASE_URL ?>assets/img/sesc1.png" alt="">
-            <img src="<?= BASE_URL ?>assets/img/senac1.png" alt="">
+            <img src="<?= BASE_URL ?>assets/img/site_senac.png" alt="">
         </div>
     </header>
     <main class="d-flex align-items-center">
@@ -43,7 +43,7 @@ $_SESSION['mensagem'] = NULL;
                     <h4>E-mail</h4>
                     <input type="text" placeholder="*****@***.***" name="userEmail">
                     <h4>CPF</h4>
-                    <input type="text" placeholder="***.***.***-**" name="userCpf" maxlength="11">
+                    <input type="text" placeholder="***.***.***-**" name="userCpf" maxlength="14" id="cpf">
                     <h4>Senha</h4>
                     <input type="password" placeholder="********" name="userPassword">
                     <h4>Confirmar senha</h4>

@@ -74,9 +74,9 @@ try {
                 <a class="navbar-brand d-flex justify-content-center align-items-center rounded-5 ps-3"
                     href="<?= BASE_URL ?>assets/pages/main.php">
                     <img src="<?= BASE_URL ?>assets/img/sesc1.png" alt="">
-                    <img src="<?= BASE_URL ?>assets/img/senac1.png" alt="">
+                    <img src="<?= BASE_URL ?>assets/img/site_senac.png" alt="">
                 </a>
-                <button class="navbar-toggler" type="button">
+                <button class="navbar-toggler border-0" type="button">
                     <a href="<?= BASE_URL ?>assets/pages/user.php" class="w-100">
                         <?php if ($imgUser == "") { ?>
                             <img src="<?= BASE_URL ?>assets/img/user.png" class="img-user rounded-circle p-1" alt="">

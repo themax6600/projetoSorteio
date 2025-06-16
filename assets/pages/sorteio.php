@@ -24,12 +24,12 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
             <?php };?>
             <a href="../pages/main.php" class="btn btn-primary fs-4 p-3 border-0 rounded-4 mt-4 m-5">VOLTAR PARA A TELA INICIAL</a>
         </div>
-        <?php if ($passou == 1) { ?>
+        <?php if ($user) { ?>
         <div class="d-flex justify-content-evenly">
             <img src="../img/sorteadoE.png" alt="imagem de fogos de artifício">
             <img src="../img/sorteado.png" alt="imagem de fogos de artifício">
         </div>
-        <?php } else {{}} ?>
+        <?php }?>
     </div>
 </main>
 

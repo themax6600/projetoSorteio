@@ -12,6 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $userPassword = filter_input(INPUT_POST, "userPassword", FILTER_SANITIZE_EMAIL);
 }
 
+$userCpf = preg_replace('/\D/', '', $userCpf);
+
 if (!$userName || !$userPassword || !$userSobrenome || !$userEmail || !$userCpf) {
     $_SESSION['mensagem'] = "Preencha todos os campos!";
     header('Location: ' . BASE_URL . 'assets/pages/main.php');

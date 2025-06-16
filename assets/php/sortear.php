@@ -3,7 +3,8 @@ session_start();
 $mensagem = $_SESSION['mensagem'] ?? null;
 include_once('../data/config.php');
 
-$sql = "SELECT * FROM userinfos WHERE adm = 0";
+$i = 0;
+$sql = "SELECT * FROM userinfos WHERE adm = 0 AND passou = 0";
 $select = $conexao->prepare($sql);
 
 if ($select->execute()) {
@@ -49,6 +50,17 @@ if ($select->execute()) {
 
             $sql .= implode(", ", $placeholders);
             $insert = $conexao->prepare($sql);
+
+            print_r($indicesSorteados) ;
+
+            
+            foreach ($indicesSorteados as $id){
+                $sql = "UPDATE userinfos SET passou = 1 WHERE userId = $id";
+                $update = $conexao-> prepare($sql);
+                $update-> execute();
+                echo " $id";
+            }
+                        exit;
 
             if ($insert->execute($params)) {
                 $_SESSION['mensagem'] = "Alunos sorteados.";
