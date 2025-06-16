@@ -26,7 +26,11 @@ if ($select->execute()) {
                         <div class="card border border-dark border-2 bg-success d-flex flex-row align-items-center justify-content-between m-2 p-2">
                             <div class="px-2">
                                 <div class="container d-flex align-items-center">
-                                    <img src="<?= BASE_URL ?>assets/img/<?= $usersorteado['imgUser'] ?>" class="img-user rounded-circle" alt="">
+                    <?php if ($usersorteado['imgUser'] == "") { ?>
+                        <img src="<?= BASE_URL ?>assets/img/user.png" class="img-user rounded-circle p-1" alt="">
+                    <?php } else { ?>
+                        <img src="<?= BASE_URL ?>assets/php/<?= $usersorteado['imgUser'] ?>" class="img-user rounded-circle p-1" alt="">
+                    <?php }; ?>
                                     <h5 class="fw-bold text-light ps-1"><?= $usersorteado['userName'] ?> <?= $usersorteado['userSobrenome'] ?></h5>
                                 </div>
                                 <div class="container">
