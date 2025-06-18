@@ -5,12 +5,14 @@ include_once('../data/config.php');
 include_once('../templates/header.php');
 
 ?>
-
 <main class="d-flex align-items-center">
     <div class="principal container bg-secondary rounded-4 d-flex bg-opacity-50 p-3">
         <div class="col d-flex ms-4 mt-5">
             <form action="<?= BASE_URL ?>assets/php/atualizarPerfilTESTE.php" method="POST" class="w-100">
                 <div class="d-flex mb-5 w-100 justify-content-start informacoes <?php if ($adm == 1) { ?> flex-column <?php } ?>">
+                    <?php if (isset($mensagem)) { ?>
+                        <p class="alert alert-danger mt-2"><?= $mensagem ?></p>
+                    <?php }; ?>
                     <?php if ($adm == 1) { ?>
                         <div class="d-flex justify-content-center align-items-center w-100 h-25 mb-2">
                             <h4 class="bg-warning rounded-4 p-1 fw-bold">Conta de adm</h4>
@@ -38,20 +40,19 @@ include_once('../templates/header.php');
 
                         <h4>Senha</h4>
                     </label>
-                    <input type="password" name="novaSenha" id="senha" placeholder="********" name="userSobrenome" class="w-75 form-control mb-2">
+                    <input type="password" name="novaSenha" id="senha" placeholder="********" class="w-75 form-control mb-2">
                     <label for="novaSenha" class="form-label">
                         <h4>Confirmar Senha</h4>
                     </label>
-                    <input type="text" name="confirmaSenha" id="senhaNova" placeholder="********" name="userSobrenome" class="w-75 form-control mb-2">
+                    <input type="text" name="confirmaSenha" id="senhaNova" placeholder="********" class="w-75 form-control mb-2">
                     <div class="botao col mt-3 w-75 d-flex justify-content-around">
+                        <button type="submit" class="button_user btn btn-warning bg-warning w-30"> Confirmar </button>
+                        <a class="sair-botao btn btn-danger bg-danger w-50" href="../php/logout.php"> Sair</a>
                 </form>
 
-                <a type="submit" class="button_user btn btn-warning bg-warning w-30" href="../php/atualizarPerfilTESTE.php"> Confirmar </a>
-                <a class="sair-botao btn btn-danger bg-danger w-50" href="../php/logout.php"> Sair</a>
+
         </div>
-        <?php if (isset($mensagem)) { ?>
-            <p class="alert alert-danger mt-2"><?= $mensagem ?></p>
-        <?php }; ?>
+
         </form>
 
         <form action="<?= BASE_URL ?>assets/php/addFoto.php" method="POST" enctype="multipart/form-data">
@@ -76,13 +77,13 @@ include_once('../templates/header.php');
                 </div>
             </div>
         </form>
-
     </div>
+
     <div class="col imagem_user">
         <img src="<?= BASE_URL ?>assets/img/ensinoMedioPronto.png" class="rounded-4 w-100 h-100" alt="">
     </div>
     </div>
-    <?php
-    include_once('../templates/footer.php');
-    ?>
 </main>
+<?php
+include_once('../templates/footer.php');
+?>

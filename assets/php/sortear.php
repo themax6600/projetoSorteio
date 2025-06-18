@@ -3,7 +3,13 @@ session_start();
 $mensagem = $_SESSION['mensagem'] ?? null;
 include_once('../data/config.php');
 
-$i = 0;
+$numPessoa = filter_input(INPUT_POST, "numPessoa", FILTER_SANITIZE_NUMBER_INT);
+if (empty($numPessoa) || $numPessoa <= 0) {
+    $_SESSION['mensagem'] = "Adicione um número válido para sortear.";
+    header("Location:" . BASE_URL . "assets/pages/sortearAlunoAdm.php");
+    exit;
+}
+
 $sql = "SELECT * FROM userinfos WHERE adm = 0 AND passou = 0";
 $select = $conexao->prepare($sql);
 
@@ -11,70 +17,69 @@ if ($select->execute()) {
     $userinfos = $select->fetchAll(PDO::FETCH_ASSOC);
 
     if (!empty($userinfos)) {
-        $numeroSorteados = 5;
-
-        if (count($userinfos) < $numeroSorteados) {
+        if (count($userinfos) < $numPessoa) {
             $_SESSION['mensagem'] = "Não há usuários suficientes para o sorteio.";
             header("Location:" . BASE_URL . "assets/pages/sortearAlunoAdm.php");
             exit;
-        } else {
-            $indicesSorteados = array_rand($userinfos, $numeroSorteados);
+        }
 
-            if (!is_array($indicesSorteados)) {
-                $indicesSorteados = [$indicesSorteados];
-            }
+        $indicesSorteados = array_rand($userinfos, $numPessoa);
+        if (!is_array($indicesSorteados)) {
+            $indicesSorteados = [$indicesSorteados];
+        }
 
-            $rows = [];
-            foreach ($indicesSorteados as $indice) {
-                $user = $userinfos[$indice];
-                $rows[] = [
-                    'userName' => $user['userName'],
-                    'userCpf' => $user['userCpf'],
-                    'imgUser' => $user['imgUser'],
-                    'userId' => $user['userId'],
-                    'userEmail' => $user['userEmail'],
-                    'userSobrenome' => $user['userSobrenome']
-                ];
-            }
+        $rows = [];
+        $userIds = [];
 
-            $sql = "INSERT INTO usersorteados (userName, userCpf, imgUser, userId, userEmail, userSobrenome) VALUES ";
-            $placeholders = [];
-            $params = [];
+        foreach ($indicesSorteados as $indice) {
+            $user = $userinfos[$indice];
+            $rows[] = [
+                'userName' => $user['userName'],
+                'userCpf' => $user['userCpf'],
+                'imgUser' => $user['imgUser'],
+                'userId' => $user['userId'],
+                'userEmail' => $user['userEmail'],
+                'userSobrenome' => $user['userSobrenome']
+            ];
+            $userIds[] = $user['userId'];
+        }
 
-            foreach ($rows as $row) {
-                $placeholders[] = "(?, ?, ?, ?, ?, ?)";
-                foreach ($row as $key => $value) {
-                    $params[] = $value;
-                }
-            }
+        $sql = "INSERT INTO usersorteados (userName, userCpf, imgUser, userId, userEmail, userSobrenome) VALUES ";
+        $placeholders = [];
+        $params = [];
 
-            $sql .= implode(", ", $placeholders);
-            $insert = $conexao->prepare($sql);
-
-            print_r($indicesSorteados) ;
-
-            
-            foreach ($indicesSorteados as $id){
-                $sql = "UPDATE userinfos SET passou = 1 WHERE userId = $id";
-                $update = $conexao-> prepare($sql);
-                $update-> execute();
-                echo " $id";
-            }
-                        exit;
-
-            if ($insert->execute($params)) {
-                $_SESSION['mensagem'] = "Alunos sorteados.";
-                $ids = implode(',', array_map(fn($indice) => $userinfos[$indice]['userId'], $indicesSorteados));
-                header("Location:" . BASE_URL . "assets/pages/sortearAlunoAdm.php?ids=$ids");
-                exit();
-            } else {
-                throw new Exception("Ocorreu um erro ao inserir os dados.");
+        foreach ($rows as $row) {
+            $placeholders[] = "(?, ?, ?, ?, ?, ?)";
+            foreach ($row as $value) {
+                $params[] = $value;
             }
         }
+
+        $sql .= implode(", ", $placeholders);
+        $insert = $conexao->prepare($sql);
+
+        if ($insert->execute($params)) {
+            
+            $update = $conexao->prepare("UPDATE userinfos SET passou = 1 WHERE userId = ?");
+            foreach ($userIds as $userId) {
+                $update->execute([$userId]);
+            }
+
+            $_SESSION['mensagem'] = "Alunos sorteados com sucesso.";
+            $ids = implode(',', $userIds);
+            header("Location:" . BASE_URL . "assets/pages/sortearAlunoAdm.php?ids=$ids");
+            exit;
+        } else {
+            throw new Exception("Ocorreu um erro ao inserir os dados.");
+        }
     } else {
-        echo "Nenhum usuário não administrador encontrado.";
+        $_SESSION['mensagem'] = "Nenhum usuário não administrador encontrado.";
+        header("Location:" . BASE_URL . "assets/pages/sortearAlunoAdm.php");
+        exit;
     }
 } else {
-    echo "Erro ao executar a consulta.";
+    $_SESSION['mensagem'] = "Erro ao executar a consulta.";
+    header("Location:" . BASE_URL . "assets/pages/sortearAlunoAdm.php");
+    exit;
 }
 ?>

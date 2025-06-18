@@ -1,4 +1,4 @@
-<?php 
+<?php
 //inicia as variaveis de sessão
 session_start();
 $_SESSION['mensagem']=NULL;
@@ -20,7 +20,6 @@ if ($_SERVER['REQUEST_METHOD']==="POST"){
 
     if ($select->rowCount() > 0) {
         $login = $select->fetch(PDO::FETCH_ASSOC);
-    
     if ($senha !== $novaSenha){
         $_SESSION['mensagem'] = "Senhas devem ser iguais!";
         header("Location: ../pages/user.php");

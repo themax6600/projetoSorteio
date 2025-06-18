@@ -34,7 +34,7 @@ try{
 
     } catch (Exception $e) {
         $_SESSION['mensagem'] = "Ocorreu um erro ao Atualizar" . $e;
-        header('Location: ' . BASE_URL . 'assets/pages/cadastrar.php');
+        header('Location: ' . BASE_URL . 'assets/pages/user.php');
         exit;
     } finally {
         //desconecta o banco de dados
