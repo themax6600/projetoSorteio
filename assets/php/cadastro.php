@@ -16,7 +16,8 @@ $userCpf = preg_replace('/\D/', '', $userCpf);
 
 if (!$userName || !$userPassword || !$userSobrenome || !$userEmail || !$userCpf) {
     $_SESSION['mensagem'] = "Preencha todos os campos!";
-    header('Location: ' . BASE_URL . 'assets/pages/main.php');
+    $_SESSION['tipoMensagem'] = "danger";
+    header('Location: ' . BASE_URL . 'assets/pages/cadastrar.php');
     exit;
 }
 
@@ -28,6 +29,7 @@ if (!$userName || !$userPassword || !$userSobrenome || !$userEmail || !$userCpf)
 
     if ($login) {
         $_SESSION['mensagem'] = "EMAIL JÁ CADASTRADO";
+        $_SESSION['tipoMensagem'] = "danger";
         header('Location: ' . BASE_URL . 'assets/pages/cadastrar.php');
         exit;
     }
@@ -48,15 +50,17 @@ try {
 
     if ($insert->execute() && $insert->rowCount() > 0) {
         $_SESSION['mensagem'] = "Cadastro com sucesso!";
+        $_SESSION['tipoMensagem'] = "success";
         header('Location: ' . BASE_URL . 'assets/pages/entrar.php');
         exit;
     } else {
         throw new Exception("Ocorreu um probleminha");
-    header('Location: ' . BASE_URL . 'assets/pages/main.php');
+    header('Location: ' . BASE_URL . 'assets/pages/cadastrar.php');
     }
 } catch (Exception $e) {
     $_SESSION['mensagem'] = "Ocorreu um erro ao cadastrar / Usuário já cadastrado!";
-    header('Location: ' . BASE_URL . 'assets/pages/main.php');
+    $_SESSION['tipoMensagem'] = "danger";
+    header('Location: ' . BASE_URL . 'assets/pages/cadastrar.php');
     exit;
 } finally {
     unset($conexao);

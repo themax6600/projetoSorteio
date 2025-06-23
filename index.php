@@ -33,9 +33,9 @@ $_SESSION['mensagem'] = NULL;
         </div>
     </header>
     <main>
-        <div class="container-lg d-flex justify-content-center ">
-            <a href="<?= BASE_URL ?>assets/pages/entrar.php" class="btn btn-warning p-1 border-0 rounded-3 ms-4 fs-4 w-25 fw-bold text-dark">Logar</a>
-            <a href="<?= BASE_URL ?>assets/pages/cadastrar.php" class="btn btn-warning p-1 border-0 rounded-3 ms-4 fs-4 w-25 fw-bold text-dark">Cadastrar</a>
+        <div class="container-lg d-flex justify-content-center botaoInicio">
+            <a href="<?= BASE_URL ?>assets/pages/entrar.php" class="btn btn-warning p-1 border-0 rounded-3 ms-4 fs-4 w-25 fw-bold text-dark botaoDeEntrada">Logar</a>
+            <a href="<?= BASE_URL ?>assets/pages/cadastrar.php" class="btn btn-warning p-1 border-0 rounded-3 ms-4 fs-4 w-25 fw-bold text-dark botaoDeEntrada">Cadastrar</a>
         </div>
         <div class="container-lg d-flex justify-content-center ">
             <a href="<?= BASE_URL ?>assets/pages/entrarAdm.php" class="text-warning bg-transparent">Sou administrador</a>

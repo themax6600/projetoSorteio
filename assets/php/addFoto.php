@@ -16,6 +16,7 @@ if ($_FILES["imagem_perfil"]["error"] == 0) {
 
         if ($update->execute()) {
             $_SESSION['mensagem'] = "Foto de perfil atualizada.";
+            $_SESSION['tipoMensagem'] = "success";
             header("Location:" . BASE_URL . "assets/pages/user.php");
             exit;
         } else {
@@ -23,9 +24,11 @@ if ($_FILES["imagem_perfil"]["error"] == 0) {
         }
     } else {
         $_SESSION['mensagem'] = "Erro no upload";
+        $_SESSION['tipoMensagem'] = "danger";
     header("Location:" . BASE_URL . "assets/pages/user.php");
     }
 } else {
     $_SESSION['mensagem'] = "Erro no upload";
+    $_SESSION['tipoMensagem'] = "danger";
     header("Location:" . BASE_URL . "assets/pages/user.php");
 }

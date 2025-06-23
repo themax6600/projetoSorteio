@@ -2,10 +2,12 @@
 session_start();
 $mensagem = $_SESSION['mensagem'] ?? null;
 include_once('../data/config.php');
+include_once('../templates/header.php');
 
 $numPessoa = filter_input(INPUT_POST, "numPessoa", FILTER_SANITIZE_NUMBER_INT);
 if (empty($numPessoa) || $numPessoa <= 0) {
     $_SESSION['mensagem'] = "Adicione um número válido para sortear.";
+    $_SESSION['tipoMensagem'] = "danger";
     header("Location:" . BASE_URL . "assets/pages/sortearAlunoAdm.php");
     exit;
 }
@@ -19,6 +21,7 @@ if ($select->execute()) {
     if (!empty($userinfos)) {
         if (count($userinfos) < $numPessoa) {
             $_SESSION['mensagem'] = "Não há usuários suficientes para o sorteio.";
+            $_SESSION['tipoMensagem'] = "danger";
             header("Location:" . BASE_URL . "assets/pages/sortearAlunoAdm.php");
             exit;
         }
@@ -65,7 +68,9 @@ if ($select->execute()) {
                 $update->execute([$userId]);
             }
 
+            $sorteou = true;
             $_SESSION['mensagem'] = "Alunos sorteados com sucesso.";
+            $_SESSION['tipoMensagem'] = "success";
             $ids = implode(',', $userIds);
             header("Location:" . BASE_URL . "assets/pages/sortearAlunoAdm.php?ids=$ids");
             exit;
@@ -74,11 +79,13 @@ if ($select->execute()) {
         }
     } else {
         $_SESSION['mensagem'] = "Nenhum usuário não administrador encontrado.";
+        $_SESSION['tipoMensagem'] = "danger";
         header("Location:" . BASE_URL . "assets/pages/sortearAlunoAdm.php");
         exit;
     }
 } else {
     $_SESSION['mensagem'] = "Erro ao executar a consulta.";
+    $_SESSION['tipoMensagem'] = "dangerbd";
     header("Location:" . BASE_URL . "assets/pages/sortearAlunoAdm.php");
     exit;
 }

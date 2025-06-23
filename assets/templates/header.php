@@ -1,6 +1,7 @@
 <?php
 
 $mensagem = $_SESSION['mensagem'] ?? NULL;
+$tipoMensagem = $_SESSION['tipoMensagem'] ?? NULL;
 
 $_SESSION['mensagem'] = NULL;
 
@@ -12,24 +13,21 @@ $IdUser = $_SESSION['userId'] ?? NULL;
 $userEmail = $_SESSION['userEmail'];
 $adm = $_SESSION['adm'];
 $passou = $_SESSION['passou'];
+$sorteioSim = $sorteou ?? null;
 
 $sql = "SELECT * FROM userinfos";
 $select = $conexao->prepare($sql);
+
 
 
 if ($select->execute()) {
     $userinfos = $select->fetchAll(PDO::FETCH_ASSOC);
 }
 
-
-
-
 if (!$logado) {
     header("Location: " . BASE_URL . "assets/pages/entrar.php");
     exit;
 }
-
-
 
 try {
     // Consulta para buscar o caminho da imagem de perfil
@@ -102,6 +100,7 @@ try {
                         </h5>
                     </div>
                 </div>
+                <a class="sair-botao btn btn-danger bg-danger w-50 m-2" href="../php/logout.php"> Sair</a>
             </div>
         </nav>
     </header>

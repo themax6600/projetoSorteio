@@ -17,9 +17,11 @@ try{
         $delete->execute();
         if (!$delete) {
             $_SESSION['mensagem'] = "Erro ao deletar usuario";
+            $_SESSION['tipoMensagem'] = "danger";
             header("location:" .BASE_URL. "assets/pages/info.php");
         } else {
             $_SESSION['mensagem'] = "Usuario deletado";
+            $_SESSION['tipoMensagem'] = "success";
             header("location:" .BASE_URL. "assets/pages/sortearalunoAdm.php");
         }
     } finally {

@@ -17,7 +17,7 @@ if ($select->execute()) {
 <main class="img-fundo">
     <div class="container d-flex justify-content-center align-items-center flex-column pt-5">
         <?php if (isset($mensagem)) { ?>
-            <p class="alert alert-danger mt-2"><?= $mensagem ?></p>
+            <p class="alert alert-<?=$tipoMensagem?> mt-2"><?= $mensagem ?></p>
         <?php }; ?>
         <h5>Numero de participantes:</h5>
         <h2 class="numParticipantes w-25 rounded-4 text-center fs-1 mt-2"><?php echo $num ?></h2>

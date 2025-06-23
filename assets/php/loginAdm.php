@@ -34,20 +34,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 }
             }
 
-            // Se chegar aqui, o email ou a senha são inválidos
             $_SESSION['mensagem'] = "Usuário ou Senha Inválido! Ou não é ADM";
+            $_SESSION['tipoMensagem'] = "danger";
             header("Location: ../pages/entrar.php");
             exit;
         } catch (PDOException $e) {
             $_SESSION['mensagem'] = "Erro ao acessar o banco de dados: ";
+            $_SESSION['tipoMensagem'] = "danger";
             header("Location: ../pages/entrar.php");
             exit;
         } finally {
-            //Fecha a conexao com o BD
             unset($conexao);
         }
     } else {
         $_SESSION['mensagem'] = "Obrigatório preencher todos os campos!";
+        $_SESSION['tipoMensagem'] = "danger";
         header("Location: ../pages/entrar.php");
         exit;
     }

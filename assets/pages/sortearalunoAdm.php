@@ -52,7 +52,7 @@ if ($select->execute()) {
             <div class="row d-flex">
                 <div class="container">
                     <?php if (isset($mensagem)) { ?>
-                        <p class="alert alert-danger mt-2"><?= $mensagem ?></p>
+                        <p class="alert alert-<?=$tipoMensagem?> mt-2"><?= $mensagem ?></p>
                     <?php }; ?>
                     <form method="post" action="<?= BASE_URL ?>assets/php/sortear.php" class="w-100 p-2">
                         <input type="number" placeholder="Numero de pessoas para sortear" name="numPessoa" class="w-100 p-2 rounded-2 mb-2">

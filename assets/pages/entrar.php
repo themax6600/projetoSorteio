@@ -4,6 +4,7 @@ session_start();
 include_once('../data/config.php');
 
 $mensagem = $_SESSION['mensagem'] ?? NULL;
+$tipoMensagem = $_SESSION['tipoMensagem'] ?? NULL;
 
 $_SESSION['mensagem'] = NULL;
 
@@ -44,7 +45,7 @@ $_SESSION['mensagem'] = NULL;
                         <button type="submit" class="btn btn-primary rounded-4 border-0 mt-2 w-75">Continuar</button>
                         <a href="./cadastrar.php" class="text-warning">Não tem uma conta? Cadastre-se aqui</a>
                         <?php if (isset($mensagem)) { ?>
-                            <p class="alert alert-danger mt-2"><?= $mensagem ?></p>
+                            <p class="alert alert-<?=$tipoMensagem?> mt-2"><?= $mensagem ?></p>
                         <?php }; ?>
                     </div>
                 </form>

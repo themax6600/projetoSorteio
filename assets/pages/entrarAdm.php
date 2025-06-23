@@ -43,7 +43,7 @@ $_SESSION['mensagem'] = NULL;
                     <div class="box d-flex flex-column align-items-center">
                         <button type="submit" class="btn btn-primary rounded-4 border-0 mt-2 w-75">Continuar</button>
                         <?php if (isset($mensagem)) { ?>
-                            <p class="alert alert-danger mt-2"><?= $mensagem ?></p>
+                            <p class="alert alert-<?=$tipoMensagem?> mt-2"><?= $mensagem ?></p>
                         <?php }; ?>
                     </div>
                 </form>

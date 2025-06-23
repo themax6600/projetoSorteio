@@ -12,12 +12,15 @@ $stmt = $conexao->prepare($sql);
 $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 $stmt->execute();
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
 ?>
 
 <main>
     <div class="d-flex flex-column justify-content-center align-items-center w-100 h-100">
         <div class="bg-warning d-flex flex-column justify-content-center rounded-4">
-            <?php if ($user) { ?>
+            <?php if ($sorteioSim == false){ ?> 
+                <h1 class="text-center mt-5 m-5">SORTEIO AINDA NÃO FEITO </h1>
+            <?php } elseif($user) { ?>
                 <h1 class="text-center mt-5 m-5">VOCÊ FOI SORTEADO EBA PARABÉNS </h1>
             <?php } else { ?>
                 <h1 class="text-center mt-5 m-5">NÃO FOI DESSA VEZ, QUE PENA <?php echo $nomeUser ?></h1>
@@ -30,6 +33,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
             <img src="../img/sorteado.png" alt="imagem de fogos de artifício">
         </div>
         <?php }?>
+
     </div>
 </main>
 

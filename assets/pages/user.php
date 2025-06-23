@@ -4,20 +4,24 @@ session_start();
 include_once('../data/config.php');
 include_once('../templates/header.php');
 
+
 ?>
 <main class="d-flex align-items-center">
     <div class="principal container bg-secondary rounded-4 d-flex bg-opacity-50 p-3">
         <div class="col d-flex ms-4 mt-5">
+            <div class="w-25">
+                <a href="<?= BASE_URL ?>assets/pages/main.php"><img src="../img/seta.png" alt="" class="w-50 setinha"></a>
+            </div>
             <form action="<?= BASE_URL ?>assets/php/atualizarPerfilTESTE.php" method="POST" class="w-100">
+                <?php if (isset($mensagem)) { ?>
+                    <p class="alert alert-<?=$tipoMensagem?> mt-2"><?= $mensagem ?></p>
+                <?php }; ?>
                 <div class="d-flex mb-5 w-100 justify-content-start informacoes <?php if ($adm == 1) { ?> flex-column <?php } ?>">
-                    <?php if (isset($mensagem)) { ?>
-                        <p class="alert alert-danger mt-2"><?= $mensagem ?></p>
-                    <?php }; ?>
                     <?php if ($adm == 1) { ?>
                         <div class="d-flex justify-content-center align-items-center w-100 h-25 mb-2">
                             <h4 class="bg-warning rounded-4 p-1 fw-bold">Conta de adm</h4>
                         </div>
-                    <?php } ?>
+                    <?php }; ?>
                     <div class="d-flex flex-row">
                         <button type="button" class="img_user bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <?php if ($imgUser == "") { ?>
@@ -35,26 +39,17 @@ include_once('../templates/header.php');
                 </div>
                 <form action="<?= BASE_URL ?>assets/php/atualizarPerfilTESTE.php" method="POST">
                     <h4>Nome</h4>
-                    <input type="text" name="nomeAtualizado" id="userName" class="w-75 form-control mb-2">
-                    <label for="nome" class="form-label" href="../php/atualizarNome.php">
-
-                        <h4>Senha</h4>
-                    </label>
+                    <input type="text" name="userName" id="newName" class="w-75 form-control mb-2">
+                    <h4>Senha</h4>
                     <input type="password" name="novaSenha" id="senha" placeholder="********" class="w-75 form-control mb-2">
-                    <label for="novaSenha" class="form-label">
-                        <h4>Confirmar Senha</h4>
-                    </label>
-                    <input type="text" name="confirmaSenha" id="senhaNova" placeholder="********" class="w-75 form-control mb-2">
+                    <h4>Confirmar Senha</h4>
+                    <input type="password" name="confirmaSenha" id="senhaNova" placeholder="********" class="w-75 form-control mb-2">
                     <div class="botao col mt-3 w-75 d-flex justify-content-around">
                         <button type="submit" class="button_user btn btn-warning bg-warning w-30"> Confirmar </button>
                         <a class="sair-botao btn btn-danger bg-danger w-50" href="../php/logout.php"> Sair</a>
                 </form>
-
-
         </div>
-
         </form>
-
         <form action="<?= BASE_URL ?>assets/php/addFoto.php" method="POST" enctype="multipart/form-data">
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">

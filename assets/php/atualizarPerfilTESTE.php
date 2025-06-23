@@ -1,74 +1,84 @@
 <?php
-//inicia as variaveis de sessão
 session_start();
-$_SESSION['mensagem']=NULL;
+$_SESSION['mensagem'] = null;
 
-//Estabelece a conexao com o banco de dados
 include_once("../data/config.php");
 
-if ($_SERVER['REQUEST_METHOD']==="POST"){
-    $userName = filter_input(INPUT_POST, 'nomeAtualizado', FILTER_SANITIZE_SPECIAL_CHARS); 
-    $senha = filter_input(INPUT_POST, 'novaSenha', FILTER_SANITIZE_SPECIAL_CHARS); 
-    $senhaNova = filter_input(INPUT_POST, 'confirmaSenha', FILTER_SANITIZE_SPECIAL_CHARS); 
-    $userId = filter_input(INPUT_POST, "userId", FILTER_SANITIZE_EMAIL);
+if ($_SERVER['REQUEST_METHOD'] === "POST") {
+    $userName = filter_input(INPUT_POST, 'userName', FILTER_SANITIZE_SPECIAL_CHARS);
+    $novaSenha = filter_input(INPUT_POST, 'novaSenha', FILTER_SANITIZE_SPECIAL_CHARS);
+    $confirmaSenha = filter_input(INPUT_POST, 'confirmaSenha', FILTER_SANITIZE_SPECIAL_CHARS);
+    $IdUser = $_SESSION['userId'];
 
-
-    $sql = "SELECT * FROM userinfos WHERE userName = :nomeAtualizado";
-    $select = $conexao->prepare($sql);
-    $select->bindParam(':nomeAtualizado', $userName);
-    $select->execute();
-
-    if ($select->rowCount() > 0) {
-        $login = $select->fetch(PDO::FETCH_ASSOC);
-    if ($senha !== $novaSenha){
-        $_SESSION['mensagem'] = "Senhas devem ser iguais!";
-        header("Location: ../pages/user.php");
-        exit;
-    } elseif ($senha == $senhaNova) {
-        $_SESSION['mensagem'] = "Senha alterada com sucesso!";
-        header("Location: ../pages/user.php");
+    if(!$userName & !$novaSenha & !$confirmaSenha){
+        $_SESSION['mensagem'] = "Preencha os campos!";
+        $_SESSION['tipoMensagem'] = "danger";
+        header("Location: " . BASE_URL . "assets/pages/user.php");
         exit;
     }
-}
 
+    if ($novaSenha !== $confirmaSenha) {
+        $_SESSION['mensagem'] = "As senhas tem que ser iguais.";
+        $_SESSION['tipoMensagem'] = "danger";
+        header("Location: " . BASE_URL . "assets/pages/user.php");
+        exit;
+    }
 
-    $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
+    $novaSenhaCrip = password_hash($novaSenha, PASSWORD_DEFAULT);
 
-
-    try{
-        $sql = "UPDATE usuarios SET senhaUsuario=:novaSenha WHERE usuarioId = :IdUser";
+    if($novaSenha == null){
+        $sql = "UPDATE userinfos SET userName = :userName WHERE userId = :IdUser";
         $update = $conexao->prepare($sql);
-        $update->bindParam(":senha", $senhaCriptografada);
-        $update->bindParam(":userId", $userId);
+        $update->bindParam(":userName", $userName);
+        $update->bindParam(":IdUser", $IdUser, PDO::PARAM_INT);
 
-        if ($update->execute()){
-            $_SESSION['mensagem'] = "Senha atualizada com sucesso";
-
-            $notiHeader = "Senha atualizado.";
-            $notiBody = "Sucesso! A sua senha foi atualizada no sistema.";
-
-            $sqlNoti = "INSERT INTO notificacoes (notiHeader, notiBody) VALUES (:notiHeader, :notiBody)";
-            $insertNoti = $conexao->prepare($sqlNoti);
-            $insertNoti->bindParam(":notiHeader", $notiHeader);
-            $insertNoti->bindParam(":notiBody", $notiBody);
-
-            if ($insertNoti->execute()) {
-                header("Location: ../pages/user.php");
-            }
+        if ($update->execute()) {
+            $_SESSION['mensagem'] = "Perfil atualizado com sucesso.";
+            $_SESSION['tipoMensagem'] = "success";
+            header("Location: " . BASE_URL . "assets/pages/user.php");
             exit;
         } else {
-            throw new Exception("Erro ao atualizar");
+            $_SESSION['mensagem'] = "Erro ao atualizar perfil.";
+            $_SESSION['tipoMensagem'] = "danger";
         }
+    } elseif ($userName == null){
+        $sql = "UPDATE userinfos SET userPassword = :novaSenha WHERE userId = :IdUser";
+        $update = $conexao->prepare($sql);
+        $update->bindParam(":novaSenha", $novaSenhaCrip);
+        $update->bindParam(":IdUser", $IdUser, PDO::PARAM_INT);
 
-    } catch (Exception $e) {
-        $_SESSION['mensagem'] = "Ocorreu um erro ao Atualizar" . $e;
-        header("Location: ../pages/user.php");
-        exit;
-    } finally {
-        //desconecta o banco de dados
-        unset($conexao);
+        if ($update->execute()) {
+            $_SESSION['mensagem'] = "Perfil atualizado com sucesso.";
+            $_SESSION['tipoMensagem'] = "success";
+            header("Location: " . BASE_URL . "assets/pages/user.php");
+            exit;
+        } else {
+            $_SESSION['mensagem'] = "Erro ao atualizar perfil.";
+            $_SESSION['tipoMensagem'] = "danger";
+        }
     }
 
+    try {
+        $sql = "UPDATE userinfos SET userName = :userName, userPassword = :novaSenha  WHERE userId = :IdUser";
+        $update = $conexao->prepare($sql);
+        $update->bindParam(":userName", $userName);
+        $update->bindParam(":novaSenha", $novaSenhaCrip);
+        $update->bindParam(":IdUser", $IdUser, PDO::PARAM_INT);
 
+        if ($update->execute()) {
+            $_SESSION['mensagem'] = "Perfil atualizado com sucesso.";
+            $_SESSION['tipoMensagem'] = "success";
+            header("Location: " . BASE_URL . "assets/pages/user.php");
+            exit;
+        } else {
+            $_SESSION['mensagem'] = "Erro ao atualizar perfil.";
+            $_SESSION['tipoMensagem'] = "danger";
+        }
+    } catch (Exception $e) {
+        $_SESSION['mensagem'] = "Ocorreu um erro ao atualizar: " . $e->getMessage();
+    } finally {
+        unset($conexao);
+        header("Location: " . BASE_URL . "assets/pages/user.php");
+        exit;
+    }
 }
-?>
